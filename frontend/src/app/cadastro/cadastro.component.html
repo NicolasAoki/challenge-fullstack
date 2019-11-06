@@ -1,13 +1,21 @@
-<form>
+<form #cadastroForm="ngForm" (ngSubmit)="requestAddressGoogle(cadastroForm)">
   <div class="row form-group">
-      <input class="col-md-12 form-control user-input" placeholder="Nome Cliente"/>
-      <input class="col-md-12 form-control user-input" placeholder="Peso da Entrega"/>
-      <input class="col-md-12 form-control user-input" placeholder="Endereço Cliente "/>
-      <input class="col-md-6 form-control" placeholder="Latitude" readonly/>
-      <input class="col-md-6 form-control" placeholder="Longitude" readonly/>
-      <button class="col-md-12 btn btn-success">Cadastrar cliente</button>
+    <input class="col-md-12 form-control user-input" [(ngModel)]="dados.nome" name="nome" placeholder="Nome Cliente"
+      required />
+    <input class="col-md-12 form-control user-input" [(ngModel)]="dados.peso" name="peso" placeholder="Peso da Entrega"
+      required />
+    <div class="input-group mb-3 user-input">
+      <input type="text" class="form-control" [(ngModel)]="dados.endereco" name="endereco"
+        placeholder="Endereço Cliente">
+      <div class="input-group-append">
+        <button (click)="getLocation()"class="btn btn-outline-secondary buscar" type="button">Buscar</button>
+      </div>
+    </div>
+    <input class="col-md-6 form-control" [(ngModel)]="dados.latitude" name="latitude" placeholder="Latitude" readonly />
+    <input class="col-md-6 form-control" [(ngModel)]="dados.longitude" name="longitude" placeholder="Longitude" readonly />
+    <button type="submit" class="col-md-12 btn btn-success cadastro">Cadastrar cliente</button>
   </div>
-  <div class="row">
-    <button class="col-md-12 btn btn-danger">Resetar cadastro</button>
+  <div class="row reset">
+    <button type="button" class="col-md-12 btn btn-danger">Resetar cadastro</button>
   </div>
 </form>
